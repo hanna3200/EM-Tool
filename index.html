@@ -11,10 +11,16 @@
             // Öffnet ein neues Fenster mit der angegebenen URL und den Eigenschaften
             window.open('https://hanna3200.github.io/EM-Tool/', 'popupWindow', 'width=800,height=600,scrollbars=yes');
         }
+
+        // Funktion aufrufen, wenn die Seite geladen wird
+        window.onload = function() {
+            openPopup();
+        };
     </script>
 </head>
 <body>
-    <!-- HTML-Link, der die JavaScript-Funktion aufruft -->
-    <a href="#" onclick="openPopup(); return false;">Klicke hier, um ein Popup zu öffnen</a>
+    <!-- Optionaler Inhalt der Hauptseite -->
+    <h1>Willkommen auf meiner Seite</h1>
+    <p>Das Popup-Fenster sollte automatisch geöffnet werden.</p>
 </body>
 </html>
