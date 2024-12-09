@@ -14,7 +14,13 @@
             var top = screen.height - height;
 
             // Öffnet ein neues Fenster mit der angegebenen URL und den Eigenschaften
-            window.open('https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21', 'popupWindow', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',scrollbars=yes');
+            var popup = window.open('https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21', 'popupWindow', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',scrollbars=yes');
+
+            // Warte, bis das Popup-Fenster geladen ist, und scrolle dann
+            popup.onload = function() {
+                popup.scrollTo(0, 100); // Scrollt 100 Pixel nach unten
+            };
+
             // Schließt die aktuelle Seite
             window.close();
         }
