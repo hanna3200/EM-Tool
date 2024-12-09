@@ -7,8 +7,14 @@
     <script>
         // Definiere die JavaScript-Funktion
         function openPopup() {
+            // Berechne die Position für die rechte untere Ecke
+            var width = 500;
+            var height = 300;
+            var left = screen.width - width;
+            var top = screen.height - height;
+
             // Öffnet ein neues Fenster mit der angegebenen URL und den Eigenschaften
-            window.open('https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21', 'popupWindow', 'width=800,height=600,scrollbars=yes');
+            window.open('https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21', 'popupWindow', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',scrollbars=yes');
             // Schließt die aktuelle Seite
             window.close();
         }
