@@ -6,16 +6,20 @@
     <title>Popup-Fenster Beispiel</title>
     <script>
         // Definiere die JavaScript-Funktion
-        function openPopup(event) {
-            // Verhindert die Standardaktion des Links
-            event.preventDefault();
+        function openPopup() {
             // Öffnet ein neues Fenster mit der angegebenen URL und den Eigenschaften
             window.open('https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21', 'popupWindow', 'width=800,height=600,scrollbars=yes');
         }
+
+        // Funktion aufrufen, wenn die Seite geladen wird
+        window.onload = function() {
+            openPopup();
+        };
     </script>
 </head>
 <body>
-    <!-- HTML-Link, der die JavaScript-Funktion aufruft -->
-    <a href="https://hanna3200.github.io/EM-Tool/" onclick="openPopup(event); return false;">Klicke hier, um ein Popup zu öffnen</a>
+    <!-- Optionaler Inhalt der Hauptseite -->
+    <h1>Willkommen auf meiner Seite</h1>
+    <p>Das Popup-Fenster sollte automatisch geöffnet werden.</p>
 </body>
 </html>
