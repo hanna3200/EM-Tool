@@ -6,41 +6,25 @@
     <title>Popup-Fenster Beispiel</title>
     <script>
         function openPopup() {
-            // Berechne die Position für die rechte untere Ecke
-            const width = 410;
-            const height = 300;
-            const left = window.screenX + window.innerWidth - width;
-            const top = window.screenY + window.innerHeight - height;
+            // Definierte Größe des Fensters (angepasst für minimalen Rand)
+            const width = 800; // Passe die Breite an den benötigten Inhalt an
+            const height = 600; // Passe die Höhe an den benötigten Inhalt an
 
-            // Öffnet ein neues Fenster mit der angegebenen URL und Eigenschaften
+            // Berechne die Position für zentriertes Popup
+            const left = (window.screen.width - width) / 2;
+            const top = (window.screen.height - height) / 2;
+
+            // Öffnet ein minimales Popup-Fenster
             const popup = window.open(
                 'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21',
                 'popupWindow',
-                `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes`
+                `width=${width},height=${height},left=${left},top=${top},toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no`
             );
 
             if (!popup) {
                 console.error("Popup konnte nicht geöffnet werden. Bitte überprüfe, ob Popups blockiert sind.");
                 return;
             }
-
-            // Scrollt, falls möglich, nach unten (bei sicherem Zugriff)
-            popup.onload = () => {
-                try {
-                    popup.scrollTo(0, popup.document.body.scrollHeight);
-                } catch (e) {
-                    console.warn("Cross-Origin-Zugriff blockiert. Manuelles Scrollen erforderlich.");
-                }
-            };
-
-            // Falls Cross-Origin-Inhalte geladen werden, kann scrollTo nur ausgeführt werden, wenn die Seite CORS-konform ist
-            setTimeout(() => {
-                try {
-                    popup.scrollTo(0, popup.document.body.scrollHeight);
-                } catch (e) {
-                    console.warn("Cross-Origin-Zugriff blockiert oder Inhalt noch nicht geladen.");
-                }
-            }, 1000);
 
             // Schließt die aktuelle Seite
             window.close();
