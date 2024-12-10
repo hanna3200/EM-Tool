@@ -5,41 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Popup-Fenster Beispiel</title>
     <script>
-        // Definiere die JavaScript-Funktion
         function openPopup() {
             // Berechne die Position für die rechte untere Ecke
-            var width = 410;
-            var height = 300;
-            var left = window.screenX + window.innerWidth - width;
-            var top = window.screenY + window.innerHeight - height;
+            const width = 410;
+            const height = 300;
+            const left = window.screenX + window.innerWidth - width;
+            const top = window.screenY + window.innerHeight - height;
 
-            // Öffnet ein neues Fenster mit der angegebenen URL und den Eigenschaften
-            var popup = window.open('https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21', 'popupWindow', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',scrollbars=yes,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes');
+            // Öffnet ein neues Fenster mit der angegebenen URL und Eigenschaften
+            const popup = window.open(
+                'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21',
+                'popupWindow',
+                `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes`
+            );
 
-            // Funktion zum Scrollen nach unten
-            function scrollToBottom() {
-                try {
-                    if (popup.document.readyState === 'complete') {
-                        popup.scrollTo(0, popup.document.body.scrollHeight); // Scrollt ganz nach unten
-                    } else {
-                        setTimeout(scrollToBottom, 100); // Wiederhole die Überprüfung alle 100 Millisekunden
-                    }
-                } catch (e) {
-                    setTimeout(scrollToBottom, 100); // Wiederhole die Überprüfung alle 100 Millisekunden bei Fehler
-                }
+            if (!popup) {
+                console.error("Popup konnte nicht geöffnet werden. Bitte überprüfe, ob Popups blockiert sind.");
+                return;
             }
 
-            // Warte, bis das Popup-Fenster geladen ist, und scrolle dann
-            popup.onload = scrollToBottom;
+            // Scrollt, falls möglich, nach unten (bei sicherem Zugriff)
+            popup.onload = () => {
+                try {
+                    popup.scrollTo(0, popup.document.body.scrollHeight);
+                } catch (e) {
+                    console.warn("Cross-Origin-Zugriff blockiert. Manuelles Scrollen erforderlich.");
+                }
+            };
+
+            // Falls Cross-Origin-Inhalte geladen werden, kann scrollTo nur ausgeführt werden, wenn die Seite CORS-konform ist
+            setTimeout(() => {
+                try {
+                    popup.scrollTo(0, popup.document.body.scrollHeight);
+                } catch (e) {
+                    console.warn("Cross-Origin-Zugriff blockiert oder Inhalt noch nicht geladen.");
+                }
+            }, 1000);
 
             // Schließt die aktuelle Seite
             window.close();
         }
 
         // Funktion aufrufen, wenn die Seite geladen wird
-        window.onload = function() {
-            openPopup();
-        };
+        window.onload = openPopup;
     </script>
 </head>
 <body>
