@@ -8,8 +8,8 @@
         // Definiere die JavaScript-Funktion
         function openPopup() {
             // Berechne die Position für die rechte untere Ecke
-            var width = 400;
-            var height = 400;
+            var width = 600;
+            var height = 600;
             var left = window.screenX + window.innerWidth - width;
             var top = window.screenY + window.innerHeight - height;
 
@@ -18,10 +18,14 @@
 
             // Funktion zum Scrollen nach unten
             function scrollToBottom() {
-                if (popup.document.readyState === 'complete') {
-                    popup.scrollTo(0, popup.document.body.scrollHeight); // Scrollt ganz nach unten
-                } else {
-                    setTimeout(scrollToBottom, 100); // Wiederhole die Überprüfung alle 100 Millisekunden
+                try {
+                    if (popup.document.readyState === 'complete') {
+                        popup.scrollTo(0, popup.document.body.scrollHeight); // Scrollt ganz nach unten
+                    } else {
+                        setTimeout(scrollToBottom, 100); // Wiederhole die Überprüfung alle 100 Millisekunden
+                    }
+                } catch (e) {
+                    setTimeout(scrollToBottom, 100); // Wiederhole die Überprüfung alle 100 Millisekunden bei Fehler
                 }
             }
 
