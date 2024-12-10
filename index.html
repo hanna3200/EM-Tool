@@ -8,20 +8,25 @@
         // Definiere die JavaScript-Funktion
         function openPopup() {
             // Berechne die Position für die rechte untere Ecke
-            var width = 410;
-            var height = 200;
+            var width = 400;
+            var height = 400;
             var left = window.screenX + window.innerWidth - width;
             var top = window.screenY + window.innerHeight - height;
 
             // Öffnet ein neues Fenster mit der angegebenen URL und den Eigenschaften
             var popup = window.open('https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21', 'popupWindow', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',scrollbars=yes,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes');
 
-            // Warte, bis das Popup-Fenster geladen ist, und scrolle dann
-            popup.onload = function() {
-                setTimeout(function() {
+            // Funktion zum Scrollen nach unten
+            function scrollToBottom() {
+                if (popup.document.readyState === 'complete') {
                     popup.scrollTo(0, popup.document.body.scrollHeight); // Scrollt ganz nach unten
-                }, 100); // Verzögerung von 100 Millisekunden
-            };
+                } else {
+                    setTimeout(scrollToBottom, 100); // Wiederhole die Überprüfung alle 100 Millisekunden
+                }
+            }
+
+            // Warte, bis das Popup-Fenster geladen ist, und scrolle dann
+            popup.onload = scrollToBottom;
 
             // Schließt die aktuelle Seite
             window.close();
