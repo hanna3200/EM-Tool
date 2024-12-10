@@ -6,17 +6,17 @@
     <title>Popup-Fenster Beispiel</title>
     <script>
         function openPopup() {
-            // Behalte die ursprünglichen Fenstermaße und Position
+            // Behalte die ursprünglichen Maße und Position des Fensters
             const width = 410;
             const height = 300;
             const left = window.screenX + window.innerWidth - width;
             const top = window.screenY + window.innerHeight - height;
 
-            // Öffne ein Popup mit minimalen UI-Elementen
+            // Öffne ein Popup-Fenster mit minimalen UI-Elementen
             const popup = window.open(
                 'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21',
                 'popupWindow',
-                `width=${width},height=${height},left=${left},top=${top},toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no`
+                `width=${width},height=${height},left=${left},top=${top},toolbar=no,location=no,status=no,menubar=no,directories=no,scrollbars=no,resizable=no`
             );
 
             if (!popup) {
