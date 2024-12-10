@@ -18,7 +18,9 @@
 
             // Warte, bis das Popup-Fenster geladen ist, und scrolle dann
             popup.onload = function() {
-                popup.scrollTo(0, popup.document.body.scrollHeight); // Scrollt ganz nach unten
+                setTimeout(function() {
+                    popup.scrollTo(0, popup.document.body.scrollHeight); // Scrollt ganz nach unten
+                }, 100); // Verzögerung von 100 Millisekunden
             };
 
             // Schließt die aktuelle Seite
