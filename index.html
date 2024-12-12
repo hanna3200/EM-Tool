@@ -3,35 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popup-Fenster Beispiel</title>
+    <title>Popover Beispiel</title>
+    <style>
+        /* Basis-Stile für das Popover */
+        #popover {
+            position: fixed;
+            width: 410px;
+            height: 300px;
+            right: 0;
+            bottom: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none; /* Anfangs ausgeblendet */
+            z-index: 1000;
+        }
+
+        #popover iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #closeButton {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
     <script>
-        function openPopup() {
-            // Behalte die ursprünglichen Maße und Position des Fensters
-            const width = 410;
-            const height = 300;
-            const left = window.screenX + window.innerWidth - width;
-            const top = window.screenY + window.innerHeight - height;
+        function openPopover() {
+            const popover = document.getElementById('popover');
+            popover.style.display = 'block';
+        }
 
-            // Öffne ein Popup-Fenster mit minimalen UI-Elementen
-            const popup = window.open(
-                'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21',
-                'popupWindow',
-                width=${width},height=${height},left=${left},top=${top},toolbar=no,location=no,status=no,menubar=no,directories=no,scrollbars=no,resizable=no
-            );
-
-            if (!popup) {
-                console.error("Popup konnte nicht geöffnet werden. Bitte überprüfe, ob Popups blockiert sind.");
-                return;
-            }
-
-            // Schließe die aktuelle Seite
-            window.close();
+        function closePopover() {
+            const popover = document.getElementById('popover');
+            popover.style.display = 'none';
         }
 
         // Funktion aufrufen, wenn die Seite geladen wird
-        window.onload = openPopup;
+        window.onload = openPopover;
     </script>
 </head>
 <body>
+    <div id="popover">
+        <button id="closeButton" onclick="closePopover()">Schließen</button>
+        <iframe src="https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21" 
+                title="Popover-Inhalt"></iframe>
+    </div>
 </body>
 </html>
