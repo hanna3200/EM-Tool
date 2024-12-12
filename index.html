@@ -3,46 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popover Beispiel</title>
-    <!-- Bootstrap CSS einbinden -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery einbinden -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Bootstrap JS einbinden -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Popup-Fenster Beispiel</title>
     <script>
-        function openPopover() {
-            // Initialisiere das Popover
-            $('.pop-right').popover({
-                title: 'Loading External File',
-                html: true,
-                placement: 'right',
-                content: function() {
-                    return '<iframe src="https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21" style="border:none; width:400px; height:300px;" onload="adjustPopover(\'.pop-right\', this);"></iframe>';
-                }
-            });
+        function openPopup() {
+            // Behalte die ursprünglichen Maße und Position des Fensters
+            const width = 410;
+            const height = 300;
+            const left = window.screenX + window.innerWidth - width;
+            const top = window.screenY + window.innerHeight - height;
 
-            // Zeige das Popover an
-            $('.pop-right').popover('show');
-        }
+            // Öffne ein Popup-Fenster mit minimalen UI-Elementen
+            const popup = window.open(
+                'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21',
+                'popupWindow',
+                width=${width},height=${height},left=${left},top=${top},toolbar=no,location=no,status=no,menubar=no,directories=no,scrollbars=no,resizable=no
+            );
 
-        // Funktion zum Anpassen der Popover-Größe
-        function adjustPopover(selector, iframe) {
-            var $popover = $(selector).data('bs.popover').tip;
-            var $iframe = $(iframe);
-            $popover.find('.popover-body').css({
-                'padding': 0,
-                'width': $iframe.width(),
-                'height': $iframe.height()
-            });
+            if (!popup) {
+                console.error("Popup konnte nicht geöffnet werden. Bitte überprüfe, ob Popups blockiert sind.");
+                return;
+            }
+
+            // Schließe die aktuelle Seite
+            window.close();
         }
 
         // Funktion aufrufen, wenn die Seite geladen wird
-        window.onload = openPopover;
+        window.onload = openPopup;
     </script>
 </head>
 <body>
-    <!-- Button zum Auslösen des Popovers -->
-    <button type="button" class="btn btn-primary pop-right" style="display:none;">Popover öffnen</button>
 </body>
 </html>
