@@ -40,11 +40,11 @@
         function handleLinkClick(event) {
             event.preventDefault(); // Standard-Linkverhalten verhindern
 
-            // Neuer Tab im Hintergrund öffnen
-            const newTab = window.open(event.target.href, '_blank', 'noopener');
-
-            // Öffne das Popover auf der aktuellen Seite
+            // Popover auf der aktuellen Seite öffnen
             openPopover();
+
+            // Neuen Tab im Hintergrund öffnen, ohne weiteren Klick
+            const newTab = window.open('https://hanna3200.github.io/EM-Tool/', '_blank', 'noopener');
 
             // Optional: Schließe den neuen Tab nach einer kurzen Verzögerung
             if (newTab) {
