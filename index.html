@@ -37,14 +37,21 @@
         }
     </style>
     <script>
-        function openPopover(url) {
+        function openPopoverAndClosePopup(url) {
+            // Öffne die URL in einem temporären Fenster
+            const popup = window.open(url, '_blank');
+
+            if (popup) {
+                // Schließe das temporäre Fenster sofort
+                popup.close();
+            } else {
+                console.warn("Das temporäre Fenster konnte nicht geöffnet werden. Popups könnten blockiert sein.");
+            }
+
+            // Öffne das Popover auf der aktuellen Seite
             const popover = document.getElementById('popover');
             const iframe = document.getElementById('popoverIframe');
-            
-            // Setze die URL des Iframes
-            iframe.src = url;
-
-            // Zeige das Popover an
+            iframe.src = url; // Setze die URL im Iframe
             popover.style.display = 'block';
         }
 
@@ -60,7 +67,7 @@
 </head>
 <body>
     <!-- Der Link, der das Popover öffnet -->
-    <a href="#" onclick="openPopover('https://hanna3200.github.io/EM-Tool/'); return false;">Öffne das Popover</a>
+    <a href="#" onclick="openPopoverAndClosePopup('https://hanna3200.github.io/EM-Tool/'); return false;">Öffne das Popover mit Inhalt</a>
 
     <!-- Popover-Container -->
     <div id="popover">
