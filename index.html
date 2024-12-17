@@ -16,7 +16,6 @@
             border: 1px solid #ccc;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            display: none; /* Anfangs unsichtbar */
             z-index: 10000; /* Über anderen Inhalten */
         }
 
@@ -47,27 +46,22 @@
 <body>
 
     <script>
-        // Wenn die Seite im Hintergrund geladen wird, Popover automatisch anzeigen
+        // Script, das sofort ausgeführt wird
         window.onload = function() {
-            const popover = document.createElement("div");
-            popover.classList.add("popover");
-
-            // HTML-Inhalt des Popovers mit einem iframe
-            popover.innerHTML = `
-                <iframe src="https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21"></iframe>
-                <button class="close-button">Schließen</button>
-            `;
-            
-            // Popover in den Body der Seite einfügen
-            document.body.appendChild(popover);
-            
-            // Popover anzeigen
-            popover.style.display = "block";
-
-            // Event listener für das Schließen des Popovers
-            document.querySelector(".close-button").addEventListener("click", function() {
-                popover.style.display = "none";  // Popover wird unsichtbar
-            });
+            // Versuche, das aktuelle Fenster zu schließen (erlaubt nur, wenn es per Skript geöffnet wurde)
+            if (window.opener) {
+                // Popover in der ursprünglichen Seite erzeugen
+                window.opener.document.body.innerHTML += `
+                    <div class="popover">
+                        <iframe src="https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21"></iframe>
+                        <button class="close-button" onclick="this.parentElement.remove()">Schließen</button>
+                    </div>
+                `;
+                // Fenster schließen
+                window.close();
+            } else {
+                alert("Das Fenster kann nicht geschlossen werden. Öffnen Sie den Link über ein Script!");
+            }
         };
     </script>
 
