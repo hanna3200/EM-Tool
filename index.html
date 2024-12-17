@@ -38,27 +38,17 @@
     </style>
     <script>
         function handleLinkClick(event) {
-            event.preventDefault(); // Verhindert das Standard-Linkverhalten (Seite wird nicht neu geladen)
+            event.preventDefault(); // Verhindert das Standard-Linkverhalten
 
             // Popover im aktuellen Tab öffnen
             openPopover();
-
-            // Neuer Tab wird im Hintergrund geöffnet
-            const newTab = window.open('https://hanna3200.github.io/EM-Tool/', '_blank', 'noopener');
-
-            // Schließt den neuen Tab nach einer kurzen Verzögerung
-            if (newTab) {
-                setTimeout(() => {
-                    newTab.close();
-                }, 1000); // Schließt den neuen Tab nach 1 Sekunde
-            }
         }
 
         function openPopover() {
             const popover = document.getElementById('popover');
             const iframe = document.getElementById('popoverIframe');
 
-            // Setze die feste URL im Iframe
+            // Setze die URL im Iframe (z.B. ein externes Tool oder Inhalt)
             iframe.src = 'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21';
             popover.style.display = 'block';  // Zeigt das Popover an
         }
@@ -74,7 +64,7 @@
     </script>
 </head>
 <body>
-    <!-- Link, der das Popover öffnet und den Tab im Hintergrund lädt -->
+    <!-- Link, der das Popover öffnet -->
     <a href="#" onclick="handleLinkClick(event)">Öffne Popover</a>
 
     <!-- Popover-Container -->
