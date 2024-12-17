@@ -50,7 +50,7 @@
 
             // Setze die URL im Iframe (z.B. ein externes Tool oder Inhalt)
             iframe.src = 'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21';
-            popover.style.display = 'block';  // Zeigt das Popover an
+            popover.style.display = 'block';  // Zeigt das Popover im aktuellen Tab an
         }
 
         function closePopover() {
@@ -64,14 +64,16 @@
     </script>
 </head>
 <body>
-    <!-- Link, der das Popover öffnet -->
+    <!-- Hier wird der Link sein, der das Popover öffnet -->
     <a href="#" onclick="handleLinkClick(event)">Öffne Popover</a>
 
-    <!-- Popover-Container -->
+    <!-- Popover-Container (Dieser Code befindet sich direkt auf der Seite, nicht auf einer neuen Seite) -->
     <div id="popover">
         <button id="closeButton" onclick="closePopover()">Schließen</button>
         <!-- Das Iframe, das den gewünschten Inhalt anzeigt -->
         <iframe id="popoverIframe" title="Popover-Inhalt"></iframe>
     </div>
+
+    <!-- Hier kann der Inhalt der Seite (z.B. der Power BI Bericht) stehen -->
 </body>
 </html>
