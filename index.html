@@ -38,13 +38,13 @@
     </style>
     <script>
         function handleLinkClick(event) {
-            event.preventDefault(); // Verhindert das Standard-Linkverhalten
+            event.preventDefault(); // Verhindert das Standard-Linkverhalten (Seite wird nicht neu geladen)
 
             // Popover öffnen
             openPopover();
 
-            // Neuer Tab im Hintergrund öffnen, ohne dass der Benutzer die Seite verlässt
-            window.open('https://hanna3200.github.io/EM-Tool/', '_blank', 'noopener');
+            // Schließt den aktuellen Tab
+            window.close();
         }
 
         function openPopover() {
@@ -52,8 +52,8 @@
             const iframe = document.getElementById('popoverIframe');
 
             // Setze die feste URL im Iframe
-            iframe.src = 'https://www.google.de/?hl=de';
-            popover.style.display = 'block';  // Popover wird angezeigt
+            iframe.src = 'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21';
+            popover.style.display = 'block';  // Zeigt das Popover an
         }
 
         function closePopover() {
@@ -67,13 +67,13 @@
     </script>
 </head>
 <body>
-    <!-- Link, der den neuen Tab öffnet und das Popover anzeigt -->
-    <a href="https://hanna3200.github.io/EM-Tool/" onclick="handleLinkClick(event)">Öffne Popover</a>
+    <!-- Link, der das Popover öffnet -->
+    <a href="#" onclick="handleLinkClick(event)">Öffne Popover und Tab schließen</a>
 
     <!-- Popover-Container -->
     <div id="popover">
         <button id="closeButton" onclick="closePopover()">Schließen</button>
-        <!-- Das Iframe, das die feste Seite anzeigt -->
+        <!-- Das Iframe, das den gewünschten Inhalt anzeigt -->
         <iframe id="popoverIframe" title="Popover-Inhalt"></iframe>
     </div>
 </body>
