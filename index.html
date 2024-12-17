@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Popover Beispiel</title>
     <style>
-        /* Basis-Stile für das Popover */
+        /* Popover-Stile */
         #popover {
             position: fixed;
             width: 410px;
@@ -38,7 +38,7 @@
     </style>
     <script>
         function handleLinkClick(event) {
-            event.preventDefault(); // Verhindert das Standard-Linkverhalten
+            event.preventDefault(); // Verhindert das Standard-Linkverhalten (keine Weiterleitung)
 
             // Popover im aktuellen Tab öffnen
             openPopover();
@@ -48,9 +48,9 @@
             const popover = document.getElementById('popover');
             const iframe = document.getElementById('popoverIframe');
 
-            // Setze die URL im Iframe (z.B. ein externes Tool oder Inhalt)
+            // Setze die URL im Iframe (hier dein Popover-Inhalt)
             iframe.src = 'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21';
-            popover.style.display = 'block';  // Zeigt das Popover im aktuellen Tab an
+            popover.style.display = 'block';  // Zeigt das Popover an
         }
 
         function closePopover() {
@@ -64,16 +64,15 @@
     </script>
 </head>
 <body>
-    <!-- Hier wird der Link sein, der das Popover öffnet -->
-    <a href="#" onclick="handleLinkClick(event)">Öffne Popover</a>
+    <!-- Dies ist der Link im Bericht, auf den der Benutzer klickt -->
+    <a href="https://hanna3200.github.io/EM-Tool/" onclick="handleLinkClick(event)">Klick mich, um das Popover zu öffnen</a>
 
-    <!-- Popover-Container (Dieser Code befindet sich direkt auf der Seite, nicht auf einer neuen Seite) -->
+    <!-- Popover-Container -->
     <div id="popover">
         <button id="closeButton" onclick="closePopover()">Schließen</button>
         <!-- Das Iframe, das den gewünschten Inhalt anzeigt -->
         <iframe id="popoverIframe" title="Popover-Inhalt"></iframe>
     </div>
 
-    <!-- Hier kann der Inhalt der Seite (z.B. der Power BI Bericht) stehen -->
 </body>
 </html>
