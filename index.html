@@ -37,28 +37,36 @@
         }
     </style>
     <script>
-       function openPopover() {
-    console.log("openPopover aufgerufen");
-    const popover = document.getElementById('popover');
-    popover.style.display = 'block';
-}
+        function openPopover(url) {
+            const popover = document.getElementById('popover');
+            const iframe = document.getElementById('popoverIframe');
+            
+            // Setze die URL des Iframes
+            iframe.src = url;
 
+            // Zeige das Popover an
+            popover.style.display = 'block';
+        }
 
         function closePopover() {
             const popover = document.getElementById('popover');
             popover.style.display = 'none';
-        }
 
-        // Funktion aufrufen, wenn die Seite geladen wird
-        window.onload = openPopover;
+            // Entferne die URL aus dem Iframe (optional)
+            const iframe = document.getElementById('popoverIframe');
+            iframe.src = '';
+        }
     </script>
 </head>
 <body>
+    <!-- Der Link, der das Popover öffnet -->
+    <a href="#" onclick="openPopover('https://hanna3200.github.io/EM-Tool/'); return false;">Öffne das Popover</a>
+
+    <!-- Popover-Container -->
     <div id="popover">
         <button id="closeButton" onclick="closePopover()">Schließen</button>
-        <p>Die gewünschte Seite kann nicht im Popover angezeigt werden. 
-           <a href="https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21" target="_blank">Hier öffnen</a>.</p>
+        <!-- Das Iframe, das die externe Seite anzeigt -->
+        <iframe id="popoverIframe" title="Popover-Inhalt"></iframe>
     </div>
 </body>
 </html>
-
