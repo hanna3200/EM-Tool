@@ -7,9 +7,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Link zum Öffnen des Popovers -->
+    <a href="#" id="popoverLink">Klicke hier, um ein Popover zu öffnen</a>
+
+    <!-- Modal/Popover (Anfangs unsichtbar) -->
     <div id="popover" class="popover">
-        <p>Dies ist ein Popover!</p>
-        <button id="closePopover">Schließen</button>
+        <div class="popover-content">
+            <p>Dies ist ein Popover!</p>
+            <button id="closePopover">Schließen</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
