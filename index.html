@@ -37,11 +37,24 @@
         }
     </style>
     <script>
-        function openPopover(event) {
-            // Verhindere das Standardverhalten des Links
-            event.preventDefault();
+        function handleLinkClick(event) {
+            event.preventDefault(); // Standard-Linkverhalten verhindern
 
-            // Popover sichtbar machen
+            // Neuer Tab im Hintergrund öffnen
+            const newTab = window.open(event.target.href, '_blank', 'noopener');
+
+            // Öffne das Popover auf der aktuellen Seite
+            openPopover();
+
+            // Optional: Schließe den neuen Tab nach einer kurzen Verzögerung
+            if (newTab) {
+                setTimeout(() => {
+                    newTab.close();
+                }, 1000); // Schließt den neuen Tab nach 1 Sekunde
+            }
+        }
+
+        function openPopover() {
             const popover = document.getElementById('popover');
             const iframe = document.getElementById('popoverIframe');
 
@@ -61,8 +74,8 @@
     </script>
 </head>
 <body>
-    <!-- Beispiel-Link, der das Popover öffnet -->
-    <a href="#" onclick="openPopover(event)">Öffne die gewünschte Seite im Popover</a>
+    <!-- Link, der den neuen Tab öffnet und das Popover anzeigt -->
+    <a href="https://hanna3200.github.io/EM-Tool/" onclick="handleLinkClick(event)">Öffne Popover</a>
 
     <!-- Popover-Container -->
     <div id="popover">
