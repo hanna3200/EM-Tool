@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Popover Beispiel</title>
     <style>
-        /* Stil für das Popover */
+        /* Popover-Stil */
         .popover {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 250px;
-            height: 120px;
+            width: 200px;
+            height: 100px;
             background-color: rgba(255, 255, 255, 0.9);
             border: 1px solid #ccc;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             padding: 15px;
             border-radius: 8px;
             display: none; /* Anfangs unsichtbar */
-            z-index: 10000; /* Popover erscheint über anderen Inhalten */
+            z-index: 10000; /* Über anderen Inhalten */
         }
 
         button {
@@ -39,30 +39,32 @@
     </style>
 </head>
 <body>
-    <a href="https://example.com" id="openPopoverLink" target="_blank">Klicke hier für Popover</a>
 
-    <!-- Popover -->
-    <div id="popover" class="popover">
-        <p>Ich bin ein Popover!</p>
-        <button id="closePopover">Schließen</button>
-    </div>
+    <!-- Link zum Öffnen des Popovers -->
+    <a href="#" id="popoverLink">Klicke hier, um ein Popover zu öffnen</a>
 
     <script>
-        document.getElementById("openPopoverLink").addEventListener("click", function(event) {
-            event.preventDefault(); // Verhindert die Navigation zum Link
+        // Funktion zum Erstellen und Anzeigen des Popovers
+        document.getElementById("popoverLink").addEventListener("click", function(event) {
+            event.preventDefault();  // Verhindert, dass der Link eine neue Seite lädt
 
+            // Popover-Div erstellen
+            const popover = document.createElement("div");
+            popover.classList.add("popover");
+            popover.innerHTML = "<p>Ich bin ein Popover!</p><button id='closePopover'>Schließen</button>";
+            
+            // Popover in den Body der Seite einfügen
+            document.body.appendChild(popover);
+            
             // Popover anzeigen
-            const popover = document.getElementById("popover");
             popover.style.display = "block";
 
-            // Öffne den neuen Tab im Hintergrund
-            window.open("https://example.com", "_blank");
-        });
-
-        document.getElementById("closePopover").addEventListener("click", function() {
-            const popover = document.getElementById("popover");
-            popover.style.display = "none";
+            // Event listener für das Schließen des Popovers
+            document.getElementById("closePopover").addEventListener("click", function() {
+                popover.style.display = "none";  // Popover wird unsichtbar
+            });
         });
     </script>
+
 </body>
 </html>
