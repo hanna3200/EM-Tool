@@ -37,33 +37,17 @@
         }
     </style>
     <script>
-        function openInBackgroundAndPopover(event) {
-            // Verhindere Standardverhalten des Links
+        function openPopover(event) {
+            // Verhindere das Standardverhalten des Links
             event.preventDefault();
 
-            // Öffne die gewünschte URL in einem neuen Fenster im Hintergrund
-            const newWindow = window.open(
-                event.currentTarget.href,
-                '_blank',
-                'width=1,height=1,left=-1000,top=-1000' // Unsichtbares, kleines Fenster
-            );
-
-            if (!newWindow) {
-                alert("Bitte Popups im Browser aktivieren, um den Inhalt zu sehen.");
-                return;
-            }
-
-            // Lade die URL direkt ins Popover
+            // Popover sichtbar machen
             const popover = document.getElementById('popover');
             const iframe = document.getElementById('popoverIframe');
 
+            // Setze die feste URL im Iframe
             iframe.src = 'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21';
             popover.style.display = 'block';
-
-            // Das neue Fenster nach kurzer Zeit schließen
-            setTimeout(() => {
-                newWindow.close();
-            }, 2000); // Zeit (in ms), bis das Hintergrundfenster geschlossen wird
         }
 
         function closePopover() {
@@ -77,13 +61,13 @@
     </script>
 </head>
 <body>
-    <!-- Beispiel-Link -->
-    <a href="https://hanna3200.github.io/EM-Tool/" onclick="openInBackgroundAndPopover(event)">Öffne die gewünschte Seite im Popover</a>
+    <!-- Beispiel-Link, der das Popover öffnet -->
+    <a href="#" onclick="openPopover(event)">Öffne die gewünschte Seite im Popover</a>
 
     <!-- Popover-Container -->
     <div id="popover">
         <button id="closeButton" onclick="closePopover()">Schließen</button>
-        <!-- Das Iframe, das die gewünschte Seite anzeigt -->
+        <!-- Das Iframe, das die feste Seite anzeigt -->
         <iframe id="popoverIframe" title="Popover-Inhalt"></iframe>
     </div>
 </body>
