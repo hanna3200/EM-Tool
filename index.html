@@ -45,8 +45,8 @@
             const popover = document.getElementById('popover');
             const iframe = document.getElementById('popoverIframe');
 
-            // Setze die URL des angeklickten Links im Iframe
-            iframe.src = event.currentTarget.href;
+            // Setze die feste URL im Iframe
+            iframe.src = 'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21';
             popover.style.display = 'block';
         }
 
@@ -62,12 +62,12 @@
 </head>
 <body>
     <!-- Beispiel-Link, der das Popover öffnet -->
-    <a href="https://hanna3200.github.io/EM-Tool/" onclick="openPopover(event)">Öffne die verlinkte Seite im Popover</a>
+    <a href="#" onclick="openPopover(event)">Öffne die gewünschte Seite im Popover</a>
 
     <!-- Popover-Container -->
     <div id="popover">
         <button id="closeButton" onclick="closePopover()">Schließen</button>
-        <!-- Das Iframe, das die externe Seite anzeigt -->
+        <!-- Das Iframe, das die feste Seite anzeigt -->
         <iframe id="popoverIframe" title="Popover-Inhalt"></iframe>
     </div>
 </body>
