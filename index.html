@@ -4,20 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Popover Beispiel</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Popover-Stil */
+        .popover {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            display: none; /* Anfangs unsichtbar */
+            z-index: 10000; /* Über anderen Inhalten */
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <!-- Link zum Öffnen des Popovers -->
-    <a href="#" id="popoverLink">Klicke hier, um ein Popover zu öffnen</a>
 
-    <!-- Modal/Popover (Anfangs unsichtbar) -->
+    <!-- Popover-Div (anfangs unsichtbar) -->
     <div id="popover" class="popover">
-        <div class="popover-content">
-            <p>Dies ist kkkkkein Popover!</p>
-            <button id="closePopover">Schließen</button>
-        </div>
+        <p>Ich bin ein Popover!</p>
+        <button id="closePopover">Schließen</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Sobald die Seite geladen ist, das Popover anzeigen
+        window.onload = function() {
+            const popover = document.getElementById("popover");
+            popover.style.display = "block"; // Popover wird sichtbar
+        };
+
+        // Schließen des Popovers
+        document.getElementById("closePopover").addEventListener("click", function() {
+            const popover = document.getElementById("popover");
+            popover.style.display = "none"; // Popover wird unsichtbar
+        });
+    </script>
 </body>
 </html>
