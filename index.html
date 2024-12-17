@@ -4,38 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Popover Beispiel</title>
-    <!-- Bootstrap CSS einbinden -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Popover-Stil */
+        .popover {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            display: none; /* Anfangs unsichtbar */
+            z-index: 10000; /* Über anderen Inhalten */
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container mt-5">
-        <h1>Willkommen auf der Seite</h1>
-
-        <!-- Button, der den Popover anzeigt -->
-        <button id="popoverButton" class="btn btn-primary" data-bs-toggle="popover" title="Popover Titel" data-bs-content="Dies ist ein Popover!">
-            Show Popover
-        </button>
-    </div>
-
-    <!-- Bootstrap JS und Popper.js einbinden -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
-        // Popover initialisieren
-        var popoverTrigger = document.getElementById('popoverButton');
-        var popover = new bootstrap.Popover(popoverTrigger);
+        // Wenn die Seite im Hintergrund geladen wird, Popover automatisch anzeigen
+        window.onload = function() {
+            const popover = document.createElement("div");
+            popover.classList.add("popover");
+            popover.innerHTML = "<p>Ich bin kkein Popover!</p><button id='closePopover'>Schließen</button>";
+            
+            // Popover in den Body der Seite einfügen
+            document.body.appendChild(popover);
+            
+            // Popover anzeigen
+            popover.style.display = "block";
 
-        // Optional: Popover schließen, wenn man irgendwo anders auf der Seite klickt
-        document.addEventListener('click', function (event) {
-            if (!popoverTrigger.contains(event.target)) {
-                var popoverInstance = bootstrap.Popover.getInstance(popoverTrigger);
-                if (popoverInstance) {
-                    popoverInstance.hide(); // Schließt das Popover, wenn auf etwas anderes geklickt wird
-                }
-            }
-        });
+            // Event listener für das Schließen des Popovers
+            document.getElementById("closePopover").addEventListener("click", function() {
+                popover.style.display = "none";  // Popover wird unsichtbar
+            });
+        };
     </script>
 
 </body>
