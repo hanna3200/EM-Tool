@@ -40,11 +40,18 @@
         function handleLinkClick(event) {
             event.preventDefault(); // Verhindert das Standard-Linkverhalten (Seite wird nicht neu geladen)
 
-            // Popover öffnen
+            // Popover im aktuellen Tab öffnen
             openPopover();
 
-            // Schließt den aktuellen Tab
-            window.close();
+            // Neuer Tab wird im Hintergrund geöffnet
+            const newTab = window.open('https://hanna3200.github.io/EM-Tool/', '_blank', 'noopener');
+
+            // Schließt den neuen Tab nach einer kurzen Verzögerung
+            if (newTab) {
+                setTimeout(() => {
+                    newTab.close();
+                }, 1000); // Schließt den neuen Tab nach 1 Sekunde
+            }
         }
 
         function openPopover() {
@@ -67,8 +74,8 @@
     </script>
 </head>
 <body>
-    <!-- Link, der das Popover öffnet -->
-    <a href="#" onclick="handleLinkClick(event)">Öffne Popover und Tab schließen</a>
+    <!-- Link, der das Popover öffnet und den Tab im Hintergrund lädt -->
+    <a href="#" onclick="handleLinkClick(event)">Öffne Popover</a>
 
     <!-- Popover-Container -->
     <div id="popover">
