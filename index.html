@@ -37,21 +37,14 @@
         }
     </style>
     <script>
-        function openPopoverAndClosePopup(url) {
-            // Öffne die URL in einem temporären Fenster
-            const popup = window.open(url, '_blank');
+        function openPopover(event, url) {
+            // Verhindere das Standardverhalten des Links
+            event.preventDefault();
 
-            if (popup) {
-                // Schließe das temporäre Fenster sofort
-                popup.close();
-            } else {
-                console.warn("Das temporäre Fenster konnte nicht geöffnet werden. Popups könnten blockiert sein.");
-            }
-
-            // Öffne das Popover auf der aktuellen Seite
+            // Popover sichtbar machen
             const popover = document.getElementById('popover');
             const iframe = document.getElementById('popoverIframe');
-            iframe.src = url; // Setze die URL im Iframe
+            iframe.src = url; // Lade die URL in das Iframe
             popover.style.display = 'block';
         }
 
@@ -59,15 +52,15 @@
             const popover = document.getElementById('popover');
             popover.style.display = 'none';
 
-            // Entferne die URL aus dem Iframe (optional)
+            // Entferne die URL aus dem Iframe (optional, für Sicherheit und Performance)
             const iframe = document.getElementById('popoverIframe');
             iframe.src = '';
         }
     </script>
 </head>
 <body>
-    <!-- Der Link, der das Popover öffnet -->
-    <a href="#" onclick="openPopoverAndClosePopup('https://hanna3200.github.io/EM-Tool/'); return false;">Öffne das Popover mit Inhalt</a>
+    <!-- Ein Beispiel-Link, der das Popover öffnet -->
+    <a href="https://hanna3200.github.io/EM-Tool/" onclick="openPopover(event, 'https://hanna3200.github.io/EM-Tool/');">Öffne das Popover mit Inhalt</a>
 
     <!-- Popover-Container -->
     <div id="popover">
