@@ -37,14 +37,16 @@
         }
     </style>
     <script>
-        function openPopover(event, url) {
+        function openPopover(event) {
             // Verhindere das Standardverhalten des Links
             event.preventDefault();
 
             // Popover sichtbar machen
             const popover = document.getElementById('popover');
             const iframe = document.getElementById('popoverIframe');
-            iframe.src = url; // Lade die URL in das Iframe
+
+            // Setze die URL des angeklickten Links im Iframe
+            iframe.src = event.currentTarget.href;
             popover.style.display = 'block';
         }
 
@@ -52,15 +54,15 @@
             const popover = document.getElementById('popover');
             popover.style.display = 'none';
 
-            // Entferne die URL aus dem Iframe (optional, für Sicherheit und Performance)
+            // Entferne die URL aus dem Iframe (optional)
             const iframe = document.getElementById('popoverIframe');
             iframe.src = '';
         }
     </script>
 </head>
 <body>
-    <!-- Ein Beispiel-Link, der das Popover öffnet -->
-    <a href="https://hanna3200.github.io/EM-Tool/" onclick="openPopover(event, 'https://hanna3200.github.io/EM-Tool/');">Öffne das Popover mit Inhalt</a>
+    <!-- Beispiel-Link, der das Popover öffnet -->
+    <a href="https://hanna3200.github.io/EM-Tool/" onclick="openPopover(event)">Öffne die verlinkte Seite im Popover</a>
 
     <!-- Popover-Container -->
     <div id="popover">
