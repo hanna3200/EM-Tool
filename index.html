@@ -4,75 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Popover Beispiel</title>
-    <style>
-        /* Popover-Stile */
-        #popover {
-            position: fixed;
-            width: 410px;
-            height: 300px;
-            right: 0;
-            bottom: 0;
-            background-color: white;
-            border: 1px solid #ccc;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: none; /* Anfangs ausgeblendet */
-            z-index: 1000;
-        }
-
-        #popover iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        #closeButton {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            background: #f44336;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-    </style>
-    <script>
-        function handleLinkClick(event) {
-            event.preventDefault(); // Verhindert das Standard-Linkverhalten (keine Weiterleitung)
-
-            // Popover im aktuellen Tab öffnen
-            openPopover();
-        }
-
-        function openPopover() {
-            const popover = document.getElementById('popover');
-            const iframe = document.getElementById('popoverIframe');
-
-            // Setze die URL im Iframe (hier dein Popover-Inhalt)
-            iframe.src = 'https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21';
-            popover.style.display = 'block';  // Zeigt das Popover an
-        }
-
-        function closePopover() {
-            const popover = document.getElementById('popover');
-            popover.style.display = 'none';
-
-            // Entferne die URL aus dem Iframe (optional)
-            const iframe = document.getElementById('popoverIframe');
-            iframe.src = '';
-        }
-    </script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Dies ist der Link im Bericht, auf den der Benutzer klickt -->
-    <a href="https://hanna3200.github.io/EM-Tool/" onclick="handleLinkClick(event)">Klick mich, um das Popover zu öffnen</a>
-
-    <!-- Popover-Container -->
-    <div id="popover">
-        <button id="closeButton" onclick="closePopover()">Schließen</button>
-        <!-- Das Iframe, das den gewünschten Inhalt anzeigt -->
-        <iframe id="popoverIframe" title="Popover-Inhalt"></iframe>
+    <div id="popover" class="popover">
+        <p>Dies ist ein Popover!</p>
+        <button id="closePopover">Schließen</button>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
