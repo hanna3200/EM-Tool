@@ -40,18 +40,12 @@
 </head>
 <body>
 
-    <!-- Link zum Öffnen des Popovers -->
-    <a href="#" id="popoverLink">Klicke hier, um ein Popover zu öffnen</a>
-
     <script>
-        // Funktion zum Erstellen und Anzeigen des Popovers
-        document.getElementById("popoverLink").addEventListener("click", function(event) {
-            event.preventDefault();  // Verhindert, dass der Link eine neue Seite lädt
-
-            // Popover-Div erstellen
+        // Wenn die Seite im Hintergrund geladen wird, Popover automatisch anzeigen
+        window.onload = function() {
             const popover = document.createElement("div");
             popover.classList.add("popover");
-            popover.innerHTML = "<p>Ich bin ein Popover!</p><button id='closePopover'>Schließen</button>";
+            popover.innerHTML = "<p>Ich bin kkein Popover!</p><button id='closePopover'>Schließen</button>";
             
             // Popover in den Body der Seite einfügen
             document.body.appendChild(popover);
@@ -63,7 +57,7 @@
             document.getElementById("closePopover").addEventListener("click", function() {
                 popover.style.display = "none";  // Popover wird unsichtbar
             });
-        });
+        };
     </script>
 
 </body>
