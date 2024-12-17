@@ -3,62 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popover Beispiel</title>
+    <title>Pop-over Beispiel</title>
     <style>
-        /* Popover-Stil */
-        .popover {
+        /* Pop-over Container */
+        #popover {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 200px;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 1px solid #ccc;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            display: none; /* Anfangs unsichtbar */
-            z-index: 10000; /* Über anderen Inhalten */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 410px;
+            height: 300px;
+            background-color: white;
+            border: 2px solid #ccc;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            display: none; /* Zunächst unsichtbar */
+            z-index: 1000; /* Stellen Sie sicher, dass das Pop-over über anderen Inhalten liegt */
+            padding: 10px;
+            box-sizing: border-box;
         }
 
-        button {
-            background-color: #007bff;
+        /* Pop-over Hintergrund */
+        #popoverBackground {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none; /* Zunächst unsichtbar */
+            z-index: 999; /* Hintergrund muss unter dem Pop-over sein */
+        }
+
+        /* Einfache Schaltfläche, um das Pop-over zu schließen */
+        #closeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
             color: white;
             border: none;
-            padding: 8px;
+            padding: 5px;
             cursor: pointer;
-            border-radius: 4px;
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
         }
     </style>
+    <script>
+        function openPopover() {
+            // Zeigt das Pop-over und den Hintergrund an
+            document.getElementById('popover').style.display = 'block';
+            document.getElementById('popoverBackground').style.display = 'block';
+        }
+
+        function closePopover() {
+            // Versteckt das Pop-over und den Hintergrund
+            document.getElementById('popover').style.display = 'none';
+            document.getElementById('popoverBackground').style.display = 'none';
+        }
+
+        // Funktion zum Laden der Seite
+        window.onload = function() {
+            openPopover(); // Pop-over öffnen, wenn die Seite geladen wird
+        }
+    </script>
 </head>
 <body>
+    <!-- Hintergrund für das Pop-over -->
+    <div id="popoverBackground" onclick="closePopover()"></div>
 
-    <script>
-        // Wenn die Seite im Hintergrund geladen wird, Popover automatisch anzeigen
-        window.onload = function() {
-            const popover = document.createElement("div");
-            popover.classList.add("popover");
-            popover.innerHTML = "<p>Ich bin kkein Popover!</p><button id='closePopover'>Schließen</button>";
-            
-            // Popover in den Body der Seite einfügen
-            document.body.appendChild(popover);
-            
-            // Popover anzeigen
-            popover.style.display = "block";
-
-            // Event listener für das Schließen des Popovers
-            document.getElementById("closePopover").addEventListener("click", function() {
-                popover.style.display = "none";  // Popover wird unsichtbar
-            });
-        };
-    </script>
-
+    <!-- Das Pop-over selbst -->
+    <div id="popover">
+        <button id="closeButton" onclick="closePopover()">Schließen</button>
+        <iframe src="https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21" width="100%" height="100%"></iframe>
+    </div>
 </body>
 </html>
