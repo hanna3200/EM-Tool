@@ -10,35 +10,30 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 400px; /* Breite des Popovers */
-            height: 300px; /* Höhe des Popovers */
+            width: 200px;
+            height: 100px;
             background-color: rgba(255, 255, 255, 0.9);
             border: 1px solid #ccc;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
             border-radius: 8px;
+            display: none; /* Anfangs unsichtbar */
             z-index: 10000; /* Über anderen Inhalten */
         }
 
-        iframe {
-            width: 100%;
-            height: calc(100% - 40px); /* Platz für den Schließen-Button */
-            border: none;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .close-button {
+        button {
             background-color: #007bff;
             color: white;
             border: none;
             padding: 8px;
             cursor: pointer;
-            border-radius: 0 0 8px 8px;
-            width: 100%;
-            text-align: center;
-            display: block;
+            border-radius: 4px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
         }
 
-        .close-button:hover {
+        button:hover {
             background-color: #0056b3;
         }
     </style>
@@ -46,22 +41,22 @@
 <body>
 
     <script>
-        // Script, das sofort ausgeführt wird
+        // Wenn die Seite im Hintergrund geladen wird, Popover automatisch anzeigen
         window.onload = function() {
-            // Versuche, das aktuelle Fenster zu schließen (erlaubt nur, wenn es per Skript geöffnet wurde)
-            if (window.opener) {
-                // Popover in der ursprünglichen Seite erzeugen
-                window.opener.document.body.innerHTML += `
-                    <div class="popover">
-                        <iframe src="https://gpt.hr-digital-lernwerk.enbw.cloud/gpts/Effizienzmanagement%20und%20Prozessoptimierung%20im%20Kontext%20ONE%21"></iframe>
-                        <button class="close-button" onclick="this.parentElement.remove()">Schließen</button>
-                    </div>
-                `;
-                // Fenster schließen
-                window.close();
-            } else {
-                alert("Das Fenster kann nicht geschlossen werden. Öffnen Sie den Link über ein Script!");
-            }
+            const popover = document.createElement("div");
+            popover.classList.add("popover");
+            popover.innerHTML = "<p>Ich bin kkein Popover!</p><button id='closePopover'>Schließen</button>";
+            
+            // Popover in den Body der Seite einfügen
+            document.body.appendChild(popover);
+            
+            // Popover anzeigen
+            popover.style.display = "block";
+
+            // Event listener für das Schließen des Popovers
+            document.getElementById("closePopover").addEventListener("click", function() {
+                popover.style.display = "none";  // Popover wird unsichtbar
+            });
         };
     </script>
 
